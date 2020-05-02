@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style media="screen">
+      body{
+        margin-top: 40px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+        background-color: #262626;
+        color: #999999;
+        font-size: 15px;
+      }
+    </style>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="indexTheme2style.css">
+    <title>Installation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="refer.js"></script>
+  </head>
+  <body>
+    <div>
+      <ul>
+          <li><a href="indexTheme1.html">About</a></li>
+          <li id="poseban"><a href="index.html">Home Page</a></li>
+          <li><a href="indexTheme3.html">Environment</a></li>
+      </ul>
+    </div>
+
+    <div class="archlogo">
+      <div class="logo">
+        <img id="logo_pic" src="archlogo3.png" alt="">
+      </div>
+    </div>
+    <div id="bro">
+      <h2>Pre-installation</h2>
+      <h4>Verify signature</h4>
+      <p>It is recommended to verify the image signature before use, especially when downloading from an HTTP mirror, where downloads are generally prone to be intercepted to serve malicious images.
+      On a system with GnuPG installed, do this by downloading the PGP signature (under Checksums) to the ISO directory, and verifying it with:</p>
+
+      <code>$ gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.sig</code>
+
+      <p>Alternatively, from an existing Arch Linux installation run:</p>
+
+      <code>$ pacman-key -v archlinux-version-x86_64.iso.sig</code>
+
+      <h4>Boot the live environment</h4>
+      <p>The live environment can be booted from a USB flash drive, an optical disc or a network with PXE.
+      Set the keyboard layout
+      The default console keymap is US. Available layouts can be listed with:</p>
+
+      <code># ls /usr/share/kbd/keymaps/**/*.map.gz</code>
+
+      <p>To modify the layout, append a corresponding file name to loadkeys(1), omitting path and file extension. For example, to set a German keyboard layout:</p>
+
+      <code># loadkeys de-latin1</code>
+
+      <p>Console fonts are located in /usr/share/kbd/consolefonts/ and can likewise be set with setfont(8).</p>
+
+      <h4>Verify the boot mode</h4>
+      <p>If UEFI mode is enabled on an UEFI motherboard, Archiso will boot Arch Linux accordingly via systemd-boot. To verify this, list the efivars directory:</p>
+
+      <code># ls /sys/firmware/efi/efivars</code>
+
+      <p>If the directory does not exist, the system may be booted in BIOS or CSM mode. Refer to your motherboard's manual for details.</p>
+
+      <h4>Update the system clock</h4>
+      <p>Use timedatectl(1) to ensure the system clock is accurate:</p>
+
+      <code># timedatectl set-ntp true</code>
+
+      <p>To check the service status, use timedatectl status.
+      Partition the disks
+      When recognized by the live system, disks are assigned to a block device such as /dev/sda or /dev/nvme0n1. To identify these devices, use lsblk or fdisk.</p>
+
+      <code># fdisk -l</code>
+
+      <h2>Installation</h2>
+      <h4>Select the mirrors</h4>
+      <p>Packages to be installed must be downloaded from mirror servers, which are defined in /etc/pacman.d/mirrorlist. On the live system, all mirrors are enabled, and sorted by their synchronization status and speed at the time the installation image was created.
+      The higher a mirror is placed in the list, the more priority it is given when downloading a package. You may want to edit the file accordingly, and move the geographically closest mirrors to the top of the list, although other criteria should be taken into account.
+      This file will later be copied to the new system by pacstrap, so it is worth getting right.
+      <h4>Install essential packages</h4>
+      <p>Use the pacstrap script to install the base package, Linux kernel and firmware for common hardware:</p>
+
+      <code># pacstrap /mnt base linux linux-firmware</code>
+
+      <h4>Fstab</h4>
+      <p>Generate an fstab file (use -U or -L to define by UUID or labels, respectively):</p>
+
+      <code># genfstab -U /mnt >> /mnt/etc/fstab</code>
+
+      <p>Check the resulting /mnt/etc/fstab file, and edit it in case of errors.</p>
+
+      <h4>Chroot</h4>
+      <p>Change root into the new system:</p>
+
+      <code># arch-chroot /mnt</code>
+
+      <h4>Time zone</h4>
+      <p>Set the time zone:</p>
+
+      <code># ln -sf /usr/share/zoneinfo/Region/City /etc/localtime</code>
+
+      <p>Run hwclock(8) to generate /etc/adjtime:</p>
+
+      <code># hwclock –systohc</code>
+
+      <h4>Localization</h4>
+      <p>Edit /etc/locale.gen and uncomment en_US.UTF-8 UTF-8 and other needed locales. Generate the locales by running:</p>
+
+      <code># locale-gen</code>
+
+      <p>Create the locale.conf(5) file, and set the LANG variable accordingly:</p>
+
+      <code>/etc/locale.conf</code>
+      <code>LANG=en_US.UTF-8</code>
+
+      <p>If you set the keyboard layout, make the changes persistent in vconsole.conf(5):</p>
+
+      <code>/etc/vconsole.conf</code>
+      <code>KEYMAP=de-latin1</code>
+
+      <h4>Network configuration</h4>
+      <p>Create the hostname file:</p>
+
+      <code>/etc/hostname</code>
+      <code>myhostname</code>
+
+      <p>Add matching entries to hosts(5):</p>
+
+      <code>/etc/hosts</code>
+      <code>127.0.0.1	localhost
+      ::1		localhost
+      127.0.1.1	myhostname.localdomain	myhostname</code>
+
+      <p>If the system has a permanent IP address, it should be used instead of 127.0.1.1.</p>
+
+      <h4>Initramfs</h4>
+      <p>Creating a new initramfs is usually not required, because mkinitcpio was run on installation of the kernel package with pacstrap.
+      For LVM, system encryption or RAID, modify mkinitcpio.conf(5) and recreate the initramfs image:</p>
+
+      <code># mkinitcpio -P</code>
+
+      <h4>Root password</h4>
+      <p>Set the root password:</p>
+
+      <code># passwd</code>
+
+      <h4>Boot loader</h4>
+      <p>Choose and install a Linux-capable boot loader. If you have an Intel or AMD CPU, enable microcode updates in addition.</p>
+
+    </div>
+    <div class="yikes">
+      <div class="vid1">
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/mXMIgpxJL-4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="vid2">
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/Z1S2drrjD_4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </body>
+</html>

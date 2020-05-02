@@ -1,0 +1,95 @@
+/*traka*/
+ul{
+  margin: 0;
+  position: fixed;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0d0d0d;
+  list-style-type: none;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+}
+li{
+  margin-left: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+li a{
+  text-decoration: none;
+  color: #66a3ff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+}
+
+#poseban{
+  margin-left: 58px;
+}
+
+/*logo + text*/
+
+/*jedan veliki div za oba dva*/
+.archlogo{
+  top: 10vh;
+  position: relative;
+  
+}
+
+/*div za sliku i logo_pic je konkretna slika*/
+.logo{
+  text-align: center;
+}
+#logo_pic{
+  width: 20%;
+  height: 20%;
+}
+
+/*div za tekst i logo_tekst tje konkretna slika*/
+.text{
+  text-align: center;
+}
+#logo_text{
+  filter: brightness(70%);
+}
+
+/*tekst za 3 taba*/
+/*veliki div*/
+.text_portion{
+  position: relative;
+  top: 20vh;
+  display: flex;
+  color: #8c8c8c;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+#naslov1{
+  color: #d9d9d9;
+  font-size: 22px;
+}
+
+#naslov2{
+  color: #d9d9d9;
+  font-size: 22px;
+}
+
+#naslov3{
+  color: #d9d9d9;
+  font-size: 22px;
+}
+
+.general_arch{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.installation{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.environment{
+  margin-left: 50px;
+  margin-right: 50px;
+}

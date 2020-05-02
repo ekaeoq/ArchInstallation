@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style media="screen">
+      body{
+        margin-top: 40px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+        background-color: black;
+        color: white;
+      }
+    </style>
+    <meta charset="utf-8">
+    <title>ArchLinux</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="refer.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div>
+      <ul>
+          <li><a href="indexTheme1.html">About</a></li>
+          <li id="poseban"><a href="indexTheme2.html">Installation</a></li>
+          <li><a href="indexTheme3.html">Environment</a></li>
+      </ul>
+    </div>
+
+    <div class="archlogo" style="opacity: 0;">
+      <div class="logo">
+        <img id="logo_pic" src="archlogo3.png" alt="">
+      </div>
+      <div class="text">
+        <img id="logo_text" src="Screenshot_237.png" alt="">
+      </div>
+    </div>
+
+    <div class="text_portion">
+      <div class="general_arch">
+        <p onclick="about1()" id="naslov1">About</p>
+        <p>Arch Linux is an independently developed, x86-64 general purpose GNU/Linux distribution versatile enough to suit any role. Development focuses on simplicity, minimalism, and code elegance. Arch is installed as a minimal base system, configured by the user upon which their own ideal environment is assembled by installing only what is required or desired for their unique purposes.</p>
+      </div>
+      <div class="installation">
+        <p onclick="about2()" id="naslov2">Installation</p>
+                <p>This document is a guide for installing Arch Linux from the live system booted with the official installation image. Before installing, it would be advised to view the FAQ. For conventions used in this document, see Help:Reading. In particular, code examples may contain placeholders (formatted in italics) that must be replaced manually.</p>
+      </div>
+      <div class="environment">
+        <p onclick="about3()" id="naslov3">Environment</p>
+        <p>A desktop environment bundles together a variety of components to provide common graphical user interface elements such as icons, toolbars, wallpapers, and desktop widgets. Additionally, most desktop environments include a set of integrated applications and utilities. Most importantly, desktop environments provide their own window manager.</p>
+      </div>
+    </div>
+
+  </body>
+</html>

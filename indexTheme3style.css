@@ -1,0 +1,69 @@
+code{
+  border: 1px solid black;
+  padding: 5px;
+  background-color: #a6a6a6;
+  color: black;
+}
+
+ul{
+  z-index: 1;
+  margin: 0;
+  position: fixed;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #4d4d4d;
+  list-style-type: none;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+}
+li{
+  margin-left: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+li a{
+  text-decoration: none;
+  color: #66a3ff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+}
+#poseban{
+  margin-left: 58px;
+}
+
+.bro{
+
+  position: relative;
+  margin: 30px;
+  top: 10vh;
+}
+/*jedan veliki div za oba dva*/
+.archlogo{
+  top: 10vh;
+  position: relative;
+}
+
+/*div za sliku i logo_pic je konkretna slika*/
+.logo{
+  margin-left: 50px;
+}
+#logo_pic{
+  width: 10%;
+  height: 10%;
+}
+
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 12px;
+}
