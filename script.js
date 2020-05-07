@@ -17,3 +17,9 @@ function about3() {
 function quiz() {
   location.href="indexQuiz.html"
 }
+
+function rad() {
+  location.href="indexRAD.html"
+}
+
+

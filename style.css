@@ -93,3 +93,12 @@ li a{
   margin-left: 50px;
   margin-right: 50px;
 }
+#tkoJEkajRADIL{
+  position: absolute;
+  bottom: 35px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
