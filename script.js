@@ -13,3 +13,7 @@ function about2() {
 function about3() {
   location.href="indexTheme3.html";
 }
+
+function quiz() {
+  location.href="indexQuiz.html"
+}

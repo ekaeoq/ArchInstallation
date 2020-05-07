@@ -60,3 +60,14 @@ li a{
   font-size: 22px;
   font-family: 'Roboto', sans-serif;
 }
+
+#quiz{
+  position: absolute;
+  top: 80vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+  color: #66a3ff;
+}
